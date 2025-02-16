@@ -1,0 +1,5 @@
+Lo que vamos a hacer es una tienda online inteligente. 
+Vamos a usar IA para personalizar la experiencia de cada usuario, mostrándoles productos que realmente les interesen, y así aumentar las ventas. 
+Utilizaremos tecnologías como Django para el backend, Python para la lógica y los modelos de IA, y algunas herramientas de frontend para la interfaz de usuario. 
+También vamos a asegurarnos de que todo funcione bien haciendo muchas pruebas con una tienda demo y,  documentaremos todo el proceso para que quede claro qué hicimos
+ y cómo lo hicimos generando así la memoría que se entregará al final.

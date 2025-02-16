@@ -1,0 +1,41 @@
+La mejor:
+
+
+	El repositorio AmazonReviews2023 ofrece herramientas y recursos para procesar el conjunto de datos de reseñas de Amazon 	de 2023. Este conjunto de datos incluye más de 570 millones de reseñas y 48 millones de productos en 33 categorías, 		proporcionando una base sólida para investigaciones en sistemas de recomendación y recuperación de información. 
+ARXIV
+
+Entre los recursos disponibles en el repositorio se encuentran:
+
+Scripts de procesamiento: Herramientas para convertir los datos en conjuntos de entrenamiento, validación y prueba, facilitando la evaluación de modelos de recomendación. 
+GITHUB
+
+Modelos preentrenados BLaIR: Modelos de lenguaje diseñados para capturar la relación entre descripciones de productos y contextos lingüísticos, mejorando las capacidades de recomendación y recuperación de información. 
+GITHUB
+
+Amazon-C4: Un conjunto de datos creado con la ayuda de ChatGPT que evalúa la capacidad de los modelos para comprender contextos complejos y recuperar productos relevantes. 
+GITHUB
+
+Estos recursos son valiosos para investigadores y desarrolladores interesados en mejorar sistemas de recomendación y recuperación de información en el ámbito del comercio electrónico.
+
+	https://paperswithcode.com/dataset/amazon-product-data
+
+	El dataset que contiene datos desde 1996 hasta 2023 -> https://amazon-reviews-2023.github.io/
+	El repo -> https://github.com/hyp1231/AmazonReviews2023
+	Cita -> Bridging Language and Items for Retrieval and Recommendation
+		Yupeng Hou, Jiacheng Li, Zhankui He, An Yan, Xiusi Chen, Julian McAuley
+		arXiv
+
+
+Segunda opción:
+
+	El conjunto de datos del sistema de recomendación de Retailrocket es una colección de datos de comercio electrónico que 	incluye:
+
+		Eventos web: Interacciones de los usuarios con la plataforma, como vistas de productos, adiciones al carrito y 					compras.
+		Propiedades de los artículos: Información detallada de los productos, incluyendo descripciones y otras 					características.
+		Árbol de categorías: Estructura jerárquica que organiza los productos en diferentes categorías.
+
+
+Otras:
+
+	https://arxiv.org/abs/2307.09688
+	

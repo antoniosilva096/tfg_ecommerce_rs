@@ -1,0 +1,22 @@
+- Creación del proyecto de Django
+
+- Creación de la arquitectura modular del proyecto:
+	Se definieron y organizaron las apps principales (core, accounts, products, reviews, recommendations y api) para separar responsabilidades.
+	
+- Instalación, configuración y despliegue del servidor postgre, creación de la base de datos principal del proyecto y conexion con el proyecto django
+
+- Modelado de la Base de Datos:
+	Se diseñaron los modelos de Producto y Review, adaptándolos a la información de reseñas, calificaciones y metadatos del dataset.
+
+-Interfaz y APIs:
+	Se desarrolló una interfaz de usuario responsiva (con Django Templates y Bootstrap) para el login, footer y navbar. Se creo la base del proyecto y se configuraron
+	los archivos estáticos principales. Creación del css y js principales, animaciones de carga, etc.
+	Se crearon endpoints con Django REST Framework para actualizar las recomendaciones del sistema en tiempo real.
+
+- Planificación de la Demo:
+	Se diseñó un flujo de demo claro, con escenarios de uso y KPIs (precisión, recall, RMSE, latencia, etc.) para evaluar la calidad y el rendimiento del sistema.
+
+- Creación del CSV Filtrado mediante procesos ETL con pandas en un directorio independiente pero dentro de la raíz del proyecto:
+	Se detalló el proceso para descargar, filtrar y destilar el dataset mediante la biblioteca Hugging Face y pandas, 
+	generando un archivo CSV manejable para el proyecto académico seleccionando la sección de belleza para comenzar con las pruebas.
+
