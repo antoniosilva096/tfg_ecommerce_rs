@@ -1,0 +1,117 @@
+<!-- core/templates/core/ofertas/oferta_list.html -->
+
+{% extends 'core/base.html' %}
+
+{% block title %}Listado de Ofertas{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between mb-3">
+    <h2>Ofertas</h2>
+    <a href="{% url 'oferta_create' %}" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Crear Oferta
+    </a>
+</div>
+<div class="table-responsive dataTables-container p-3">
+    <table id="ofertasTable" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Número de Oferta</th>
+                <th>Fecha de Creación</th>
+                <th>Persona Responsable</th>
+                <th>Cliente</th>
+                <th>Empresa</th>
+                <th>Estado</th>
+                <th>Importe (€)</th>
+                <th>Documento</th>
+                <th>URL</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for oferta in ofertas %}
+            <tr>
+                <td>{{ oferta.numero_de_oferta }}</td>
+                <td>{{ oferta.fecha_creacion|date:"d/m/Y" }}</td>
+                <td>{{ oferta.persona_responsable.nombre }}</td>
+                <td>{{ oferta.cliente }}</td>
+                <td>{{ oferta.empresa }}</td>
+                <td>{{ oferta.get_estado_display }}</td>
+                <td>{{ oferta.importe_euros }}</td>
+                <td>
+                    {% if oferta.documento %}
+                        <a href="{{ oferta.documento.url }}" target="_blank">Ver Documento</a>
+                    {% else %}
+                        No disponible
+                    {% endif %}
+                </td>
+                <td>
+                    {% if oferta.url %}
+                        <a href="{{ oferta.url }}" target="_blank">Ver URL</a>
+                    {% else %}
+                        No disponible
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'oferta_edit' oferta.pk %}" class="btn btn-primary btn-sm">
+                        <i class="bi bi-pencil-square"></i> Editar
+                    </a>
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" 
+                            data-oferta-number="{{ oferta.numero_de_oferta }}" data-delete-url="{% url 'oferta_delete' oferta.pk %}">
+                        <i class="bi bi-trash"></i> Eliminar
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal de Confirmación de Eliminación -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="post" id="deleteForm">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Eliminar Oferta</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          ¿Estás seguro de que deseas eliminar la oferta <strong id="ofertaNumber"></strong>?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-danger">Eliminar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        $('#ofertasTable').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
+            },
+            "responsive": true,
+            "autoWidth": false
+        });
+
+        var deleteModal = document.getElementById('deleteModal')
+        deleteModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget
+            var ofertaNumber = button.getAttribute('data-oferta-number')
+            var deleteUrl = button.getAttribute('data-delete-url')
+
+            var modalBodyOfertaNumber = deleteModal.querySelector('#ofertaNumber')
+            var deleteForm = deleteModal.querySelector('#deleteForm')
+
+            modalBodyOfertaNumber.textContent = ofertaNumber
+            deleteForm.action = deleteUrl
+        })
+    });
+</script>
+{% endblock %}

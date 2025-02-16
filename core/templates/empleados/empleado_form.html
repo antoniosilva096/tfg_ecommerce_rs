@@ -1,0 +1,44 @@
+<!-- core/templates/core/empleados/empleado_form.html -->
+
+{% extends 'core/base.html' %}
+
+{% block title %}{% if form.instance.pk %}Editar Empleado{% else %}Crear Empleado{% endif %}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        {% if form.instance.pk %}
+            <i class="bi bi-pencil-square"></i> Editar Empleado
+        {% else %}
+            <i class="bi bi-plus-circle"></i> Crear Empleado
+        {% endif %}
+    </div>
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">
+                {% if form.instance.pk %}
+                    <i class="bi bi-save"></i> Actualizar
+                {% else %}
+                    <i class="bi bi-save"></i> Guardar
+                {% endif %}
+            </button>
+            <a href="{% url 'empleado_list' %}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Cancelar
+            </a>
+        </form>
+    </div>
+</div>
+{% endblock %}
