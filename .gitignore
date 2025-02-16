@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+.env
+*.sqlite3
+__pycache__/
+db.sqlite3
+.env
+/media/
+tfg_ecommerce_rs.code-workspace
