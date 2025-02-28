@@ -7,4 +7,5 @@ __pycache__/
 db.sqlite3
 .env
 /media/
-tfg_ecommerce_rs.code-workspace"venv/" 
+ 
+tfg_ecommerce_rs.code-workspace 
