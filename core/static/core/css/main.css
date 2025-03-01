@@ -1,9 +1,26 @@
-body {
-    height: 100vh;
-    
-    
+/* Asegurar que la página ocupe toda la altura */
+html, body {
+    height: 100%;
+    margin: 0;
 }
 
+/* Estructura principal para mantener el footer abajo */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Hace que la página ocupe toda la pantalla */
+}
+
+/* Contenedor principal para que el contenido crezca */
+main {
+    flex-grow: 1;
+    background-image: url('../img/login-bg.png');
+    background-size: cover;
+    background-position: center;
+    padding-bottom: 50px; /* Evitar solapamiento con el footer */
+}
+
+/* Navbar */
 .navbar-nav .nav-link.active {
     font-weight: bold;
     color: #fff;
@@ -13,7 +30,6 @@ body {
 /* Estilo para evitar cambio de color y borde en botones específicos */
 .navbar-nav .nav-link.no-focus {
     border-bottom: none !important;
-
 }
 
 .navbar-nav .nav-link.no-focus:focus {
@@ -21,40 +37,34 @@ body {
     box-shadow: none;
 }
 
-
-main {
-    background-image: url('../img/login-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-}
-
+/* Estilo del footer */
 footer {
     background-color: #000000;
     color: #fff;
     text-align: center;
-    min-height: 50px; /* Altura mínima */
+    padding: 15px 0;
+    width: 100%;
 }
 
-
-
+/* Fondo para autenticación */
 .authentication-bg {
-    background-image: url('../img/login-bg.jpg');
+    background-image: url('../img/login-bg.png');
     background-size: cover;
     background-position: center;
-    height: 100vh;
 }
 
-
+/* Estilo para tarjetas con efecto de desenfoque */
 .card {
     backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.9); /* Fondo semitransparente */
 }
 
+/* Margen superior personalizado */
 .margin-top-custom {
     margin-top: 200px;
 }
 
+/* Loader para carga */
 #loader {
     position: fixed; /* Se fija en la ventana */
     top: 0;
@@ -65,22 +75,24 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* Asegúrate de que el loader esté sobre todo */
+    z-index: 9999; /* Asegura que el loader esté sobre todo */
 }
 
+/* Animación de sacudida */
 @keyframes shake {
     0% { transform: translateX(0); }
     25% { transform: translateX(-5px); }
     50% { transform: translateX(5px); }
     75% { transform: translateX(-5px); }
     100% { transform: translateX(0); }
-  }
+}
   
-  .shake {
+.shake {
     animation: shake 0.5s ease-in-out;
-  }
+}
 
-  table-transparent-bg {
+/* Tablas con fondo semitransparente */
+.table-transparent-bg {
     background-color: rgba(255, 255, 255, 0.588); 
     border-radius: 8px; 
     padding: 15px; 
@@ -91,7 +103,6 @@ footer {
     background-color: rgba(255, 255, 255, 0.325); /* Más opaco para encabezados y celdas */
 }
 
-
 /* Contenedor de DataTables con fondo blanco transparente */
 .dataTables-container {
     background-color: rgba(255, 255, 255, 0.8); /* Blanco con 80% de opacidad */
@@ -99,18 +110,19 @@ footer {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Opcional: sombra para profundidad */
 }
 
-/* Mejorar la legibilidad dentro del contenedor */
+/* Evita que DataTables agregue fondo */
 .dataTables-container .dataTables_wrapper {
-    background-color: transparent; /* Evita que DataTables agregue fondo */
+    background-color: transparent;
 }
 
-/* Opcional: ajustar colores de DataTables para mejor contraste */
+/* Ajustar colores de DataTables para mejor contraste */
 .dataTables-container .dataTables_filter input {
     background-color: rgba(255, 255, 255, 0.8);
     border: 1px solid #ced4da;
     border-radius: 4px;
 }
 
+/* Paginación en DataTables */
 .dataTables-container .dataTables_paginate .paginate_button {
     background-color: rgba(255, 255, 255, 0.9);
     border: 1px solid #ced4da;
@@ -129,7 +141,3 @@ footer {
     color: white !important;
     border-color: #0a58ca;
 }
-  
-
-
-

@@ -36,6 +36,8 @@ class Command(BaseCommand):
                 except ValueError:
                     average_rating = None  # O asigna un valor por defecto
 
+                image_url = row.get("image_url", "").strip()
+
                 # Crear o actualizar el producto
                 product, created = Product.objects.get_or_create(
                     asin=asin,
@@ -43,6 +45,7 @@ class Command(BaseCommand):
                         "title": title,
                         "price": price,
                         "average_rating": average_rating,
+                        "image_url": image_url,
                     }
                 )
                 if created:

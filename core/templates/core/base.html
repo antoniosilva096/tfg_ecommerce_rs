@@ -17,53 +17,58 @@
 
     <link rel="icon" type="image/x-icon" href="{% static 'core/favicon.ico' %}">
 
-    {% block extra_css %}
-    <!-- Ejemplo de estilos personalizados adicionales -->
     <style>
-        /* Fuente y colores base */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
+        /* Asegurar que el contenido se expanda y el footer esté siempre abajo */
+        html, body {
+            height: 100%;
+            margin: 0;
         }
-
-        /* Pequeña animación de fade-in al cargar la página */
-        body.fade-in {
-            opacity: 0;
-            transition: opacity 0.7s ease-in;
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
-        body.fade-in.loaded {
-            opacity: 1;
+        .content {
+            flex-grow: 1;
+        }
+        footer {
+            background-color: #343a40; /* Color oscuro de Bootstrap */
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            width: 100%;
         }
     </style>
-    {% endblock %}
 </head>
-<body class="d-flex flex-column min-vh-100 fade-in">
+<body class="fade-in">
 
-    <!-- Navbar -->
-    {% include 'core/navbar.html' %}
+    <div class="wrapper">
+        <!-- Navbar -->
+        {% include 'core/navbar.html' %}
 
-    <!-- Contenedor Principal -->
-    <main class="flex-grow-1">
-        <div class="container mt-4">
-            <!-- Loader -->
-            {% include 'core/loader.html' %}
-            <!-- Mensajes de éxito/error -->
-            {% include 'core/messages.html' %}
-            
-            {% block content %}
-            {% endblock %}
-        </div>
-    </main>
+        <!-- Contenedor Principal -->
+        <main class="content">
+            <div class="container mt-4">
+                <!-- Loader -->
+                {% include 'core/loader.html' %}
+                <!-- Mensajes de éxito/error -->
+                {% include 'core/messages.html' %}
+                
+                {% block content %}
+                {% endblock %}
+            </div>
+        </main>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3 mt-auto">
-        <div class="container">
-            <p class="mb-0">
-                © 2025 Universidad de Sevilla. Proyecto Fin de Grado realizado por 
-                <strong>Antonio Silva (antsilgor)</strong> - Departamento LSI.
-            </p>
-        </div>
-    </footer>
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <p class="mb-0">
+                    © 2025 Universidad de Sevilla. Proyecto Fin de Grado realizado por 
+                    <strong>Antonio Silva (antsilgor)</strong> - Departamento LSI.
+                </p>
+            </div>
+        </footer>
+    </div>
 
     <!-- JS de jQuery -->
     <script src="{% static 'core/vendor/jquery.min.js' %}"></script>

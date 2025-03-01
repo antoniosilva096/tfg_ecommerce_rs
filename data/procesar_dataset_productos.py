@@ -56,17 +56,43 @@ print("Dataset cargado en modo streaming.")
 
 import csv
 
+def text_cleaning(text):
+    """Limpia y normaliza el texto del título."""
+    return text.replace("\n", " ").strip()
+
+def process_categories(categories):
+    """Convierte la lista de categorías en un string concatenado por '>'."""
+    return " > ".join(categories) if categories else ""
+
+def get_main_image_url(images):
+    """
+    Retorna la URL principal de la imagen del producto.
+
+    El campo 'images' es un diccionario con claves como 'hi_res', 'large' y 'thumb',
+    cada una asociada a una lista de URLs. Se itera en ese orden para devolver la primera
+    URL válida (no nula) encontrada.
+    """
+    if not images or not isinstance(images, dict):
+        return ""
+    for key in ['hi_res', 'large', 'thumb']:
+        urls = images.get(key, [])
+        if isinstance(urls, list):
+            for url in urls:
+                if url:  # Si url es no nula y no vacía
+                    return url
+    return ""
+
 output_path = "products_clean.csv"
 target_records = 150000  # Número de registros deseados
 count = 0
 
 with open(output_path, mode="w", encoding="utf-8", newline="") as csvfile:
-    fieldnames = ["asin", "title", "categories", "price", "average_rating"]
+    fieldnames = ["asin", "title", "categories", "price", "average_rating", "image_url"]
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
 
     for example in dataset:
-        # Verificar que existan los campos imprescindibles: 'title', 'categories', 'price' y 'average_rating'
+        # Verificar que existan los campos imprescindibles
         if not (example.get("title") and example.get("categories") and example.get("price") and example.get("average_rating")):
             continue
 
@@ -86,18 +112,23 @@ with open(output_path, mode="w", encoding="utf-8", newline="") as csvfile:
         title = text_cleaning(example["title"])
         categories = process_categories(example["categories"])
 
-        # Utilizar 'parent_asin' como identificador único (asin)
-        asin = example.get("parent_asin", "")
+        # Utilizar 'parent_asin' o 'asin' como identificador único
+        asin = example.get("parent_asin", "") or example.get("asin", "")
+
+        # Obtener la URL de la imagen principal, usando la función definida
+        image_url = ""
+        if example.get("images"):
+            image_url = get_main_image_url(example["images"])
 
         writer.writerow({
             "asin": asin,
             "title": title,
             "categories": categories,
             "price": price,
-            "average_rating": avg_rating
+            "average_rating": avg_rating,
+            "image_url": image_url
         })
         count += 1
-
         if count >= target_records:
             break
 
