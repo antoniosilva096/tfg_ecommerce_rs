@@ -1,6 +1,0 @@
-usuario -> postgres
-
-password -> jordanBelfort
-
-
-port -> 5432

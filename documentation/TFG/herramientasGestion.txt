@@ -1,4 +1,0 @@
--Clockify
--Google Calendar
--Google task
--Microsft proyect
